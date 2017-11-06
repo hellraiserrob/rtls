@@ -1,0 +1,31 @@
+header {
+    background: #246ab6;
+    margin: 0 0 50px 0;
+    padding: 15px 40px;
+}
+
+header nav {
+
+}
+
+header ul {
+    list-style: none;
+    text-align: right
+}
+
+header ul li {
+    display: inline-block;
+    margin: 0 0 0 20px;
+}
+
+header ul li a{
+    display: block;
+    text-transform: uppercase;
+    color: #fff;
+    padding: 3px 10px;
+}
+
+header ul li a:hover{
+    color: #fff;
+    background: #000;
+}
