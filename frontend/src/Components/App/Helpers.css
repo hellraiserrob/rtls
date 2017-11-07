@@ -1,3 +1,24 @@
+.material-icons {
+    vertical-align: middle;
+}
+
+.status {
+    display: inline-block;
+    
+    padding: 10px 20px;
+    background: #dfe4d9;
+    color: #638d32;
+    border-radius: 2px;
+    font-size: 0.4em;
+    line-height: 1.2em;
+    /* padding:0; */
+    margin: 0 0 0 10px;
+    text-transform: uppercase;
+
+    vertical-align: middle;
+}
+
+
 .text-center {
     text-align: center;
 }
@@ -21,7 +42,7 @@ hr {
     border-radius: 50%; */
 
 
-    margin: 0 0 25px 0;
+    margin: 30px 0 25px 0;
     float:none;
     text-align: left;
 
@@ -60,6 +81,17 @@ hr.long {
     display: inline-block
 }
 
+
+.bg-grey {
+    background: #efefef;
+}
+
+.image {
+    height: 200px;
+    background: #000;
+}
+
+
 .mb0 { margin-bottom: 0 }
 .mb5 { margin-bottom: 5px }
 .mb10 { margin-bottom: 10px }
@@ -71,6 +103,12 @@ hr.long {
 .mb200, .mblg { margin-bottom: 200px }
 
 .ml10 { margin-left: 10px }
+
+.p0 { padding: 0 }
+.p5 { padding: 5px }
+.p10 { padding: 10px }
+.p15 { padding: 15px }
+.p20 { padding: 20px }
 
 .pt10 { padding-top: 10px}
 .pt25 { padding-top: 25px}

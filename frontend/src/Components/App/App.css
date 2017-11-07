@@ -25,18 +25,10 @@ html {
 }
 
 
-
-hr {
-    border:0;
-    background: none;
-    height: 0;
-    border-bottom: 5px solid #ddd;
-    margin: 20px 0 20px 0;
-}
-
 a {
     text-decoration: none;
     color: #246ab6;
+    cursor: pointer;
 
     transition: all ease 0.3s;
 }

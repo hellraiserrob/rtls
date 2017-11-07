@@ -1,25 +1,63 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps'
-
+import { connect } from 'react-redux'
 
 import HeaderAuthenticated from '../Header/HeaderAuthenticated'
 
+import DevicesTable from '../Devices/DevicesTable'
+import Empty from '../Common/Empty'
+import Alert from '../Alert/Alert'
 
-const MyMapComponent = withScriptjs(withGoogleMap((props) =>
-    <GoogleMap
-        defaultZoom={8}
-        defaultCenter={{ lat: -34.397, lng: 150.644 }}
-    >
-        {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} />}
-    </GoogleMap>
-))
+import { toggleFollow } from '../../Actions/devicesActions'
+import { alertHide } from '../../Actions/alertActions'
 
 
-class Login extends Component {
+import MapsMany from '../Maps/MapsMany2'
+
+
+class Dashboard extends Component {
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            query: ''
+        }
+
+        this.onChange = this.onChange.bind(this)
+        this.clear = this.clear.bind(this)
+    }
+
+    onChange(event) {
+        this.setState({ query: event.target.value });
+    }
+
+    followed(followed) {
+
+        return followed.filter(item => item.isFollowed)
+    }
+
+    filter(devices, query) {
+
+        return devices.filter(item => item.name.toLowerCase().indexOf(query) !== -1)
+
+    }
+
+    clear() {
+        this.setState({
+            query: ''
+        })
+    }
 
     render() {
+
+        const { query } = this.state
+
+        const { devices, alert, handleToggleFollow, handleAlertHide } = this.props
+
+
+        const followed = this.followed(devices)
+        const filtered = this.filter(devices, query)
 
         return (
 
@@ -31,87 +69,110 @@ class Login extends Component {
 
                     <div className="grid">
 
-                        <div className="unit whole">
-
+                        <div className="unit two-thirds">
 
                             <div className="grid">
 
                                 <div className="unit half">
-                                    <h1>Hello Bradley</h1>
+                                    <h1 className="mb0">Device Dashboard</h1>
                                 </div>
                                 <div className="unit half text-right">
-                                    <Link to="/register" className="btn">Add New Device</Link>
+                                    <Link to="/register" className="btn">
+                                        <i className="material-icons">&#xE145;</i>
+                                        Add New Device
+                                    </Link>
                                 </div>
 
                             </div>
-
 
                             <p>
                                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut molestiae consequatur adipisci tenetur, quidem deserunt porro nemo, aperiam asperiores animi architecto, quod deleniti modi maxime aliquam corporis repellendus. Blanditiis, rem.
                             </p>
 
+                            {alert.isVisible && <Alert alert={alert} alertHide={handleAlertHide} alertSnooze={handleAlertHide} />}
 
-                            <div className="grid">
-                                <div className="unit half">
+                            <div>
 
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>Device</th>
-                                                <th>Type</th>
-                                                <th>Most recent message</th>
-                                                <th>Status</th>
-                                                <th>actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div>
-                                                        <strong>
-                                                            My first GPS
-                                                    </strong>
-                                                    </div>
-                                                    21FA10
-                                                </td>
-                                                <td>GPS</td>
-                                                <td>Right now</td>
-                                                <td>Stationary</td>
-                                                <td>
-                                                    <a href="/view">View on map</a>
-                                                    <a href="/details">Device details</a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <input value={query} onChange={this.onChange} className="form-field" placeholder="Search..." />
+                                {query.length > 0 && <a onClick={this.clear}>clear</a>}
 
-                                </div>
-
-                                <div className="unit half">
-
-                                    <MyMapComponent
-                                        isMarkerShown
-                                        googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-                                        loadingElement={<div style={{ height: `100%` }} />}
-                                        containerElement={<div style={{ height: `400px` }} />}
-                                        mapElement={<div style={{ height: `100%` }} />}
-                                    />
-
-                                </div>
                             </div>
 
+                            <hr/>
+
+                            <h2>Followed</h2>
+                            {followed.length > 0 &&
+                                <DevicesTable devices={followed} toggleFollow={handleToggleFollow} />
+                            }
+
+                            {!followed.length &&
+                                <Empty />
+                            }
+
+                            <hr/>
+
+
+                            <h2>All</h2>
+                            <DevicesTable devices={filtered} toggleFollow={handleToggleFollow} />
+
+                            {!filtered.length &&
+                                <Empty />
+                            }
 
                         </div>
 
+                        <div className="unit one-third">
+
+                            <MapsMany center={{ lat: 52.152029, lng: -0.863800 }}  />
+
+                        </div>
                     </div>
 
 
                 </div>
+
             </div>
+
+
 
 
         );
     }
 }
 
-export default Login;
+function mapStateToProps(state) {
+
+    const devices = state.devicesReducer
+    const alert = state.alertReducer
+
+    return {
+        devices,
+        alert
+    }
+}
+
+
+function mapDispatchToProps(dispatch) {
+    return {
+        handleToggleFollow(e, id) {
+
+            e.preventDefault()
+            console.log('handle toggle follow')
+            dispatch(toggleFollow(id))
+
+        },
+        handleAlertHide(e) {
+
+            e.preventDefault()
+            console.log('handle alert hide')
+            dispatch(alertHide())
+
+        }
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
+
+
+// export default Dashboard;

@@ -20,7 +20,7 @@
 .grid .unit {
   float: left;
   width: 100%;
-  padding: 15px;
+  padding: 5px 15px;
 }
 
 /* This ensures the outer gutters are equal to the (doubled) inner gutters. */

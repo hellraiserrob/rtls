@@ -8,6 +8,7 @@
     /* border: 2px solid #333; */
     display: inline-block;
     padding: 10px 15px;
+    margin: 0 10px 0 0;
 
     font-family: 'Source Sans Pro';
     font-weight: 600; 
@@ -25,6 +26,12 @@
     /* transform: translateZ(0) */
 
     background: #246ab6;
+}
+
+.btn i {
+    font-size: 18px;
+    margin-right: 5px;
+    
 }
 
 .btn:hover {

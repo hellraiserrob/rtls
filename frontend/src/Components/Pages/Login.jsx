@@ -32,18 +32,18 @@ class Login extends Component {
                                     <p>
 
                                         <label>email address</label>
-                                        <input type="text" className="form-field" />
+                                        <input type="text" className="form-field" value="bradley.howard@endava.com" />
 
                                     </p>
                                     <p>
 
                                         <label>Password </label>
-                                        <input type="password" className="form-field" />
+                                        <input type="password" className="form-field" value="12345678" />
 
                                     </p>
 
                                     <p>
-                                        <Link to="/register" className="btn">Submit</Link>
+                                        <Link to="/dashboard" className="btn">Submit</Link>
                                     </p>
 
                                     <p>

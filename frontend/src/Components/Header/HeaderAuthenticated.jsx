@@ -5,25 +5,42 @@ import './HeaderAuthenticated.css'
 
 class HeaderAuthenticated extends Component {
 
-        render() {
+    render() {
 
-            return (
+        return (
 
-                <header>
+            <header>
 
-                    <nav>
-                        <ul>
-                            <li>
-                                <Link to="/login">Logout</Link>
-                            </li>
-                        </ul>
-                    </nav>
+                <div className="wrap wider">
+
+                    <div className="grid">
+
+                        <div className="unit one-third">
+                            <h2 className="mb0">Brand</h2>
+                        </div>
 
 
-                </header>
+                        <div className="unit two-thirds">
 
-            );
-        }
+                            <nav>
+                                <ul>
+                                    <li>
+                                        <Link to="/login">Logout</Link>
+                                    </li>
+                                </ul>
+                            </nav>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </header>
+
+        );
     }
+}
 
 export default HeaderAuthenticated;
