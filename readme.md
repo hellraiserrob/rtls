@@ -2,7 +2,7 @@
 
 A PoC for RTLS
 
-https://infinite-mesa-78907.herokuapp.com/
+https://fast-lowlands-12658.herokuapp.com/
 
 
 ### commands
