@@ -35,7 +35,13 @@ class Landing extends Component {
 
                                     <p>
 
-                                        <label>Name</label>
+                                        <label>First name</label>
+                                        <input type="text" className="form-field" />
+
+                                    </p>
+                                    <p>
+
+                                        <label>Last name</label>
                                         <input type="text" className="form-field" />
 
                                     </p>

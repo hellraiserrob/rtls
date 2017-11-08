@@ -12,8 +12,11 @@ import { toggleFollow } from '../../Actions/devicesActions'
 import { alertHide } from '../../Actions/alertActions'
 
 
-import MapsMany from '../Maps/MapsMany2'
 
+import MapsMany from '../Maps/MapsMany'
+// import MapsMany from '../Maps/MapsMany2'
+
+import { getViewportSize } from '../../Utils/screen'
 
 class Dashboard extends Component {
 
@@ -21,11 +24,23 @@ class Dashboard extends Component {
         super(props)
 
         this.state = {
-            query: ''
+            query: '',
+            center: null
         }
 
         this.onChange = this.onChange.bind(this)
         this.clear = this.clear.bind(this)
+        this.changeCenter = this.changeCenter.bind(this)
+    }
+
+    componentDidMount(){
+
+        const { devices } = this.props
+
+        this.setState({
+            center: devices[0].location
+        })
+
     }
 
     onChange(event) {
@@ -33,7 +48,6 @@ class Dashboard extends Component {
     }
 
     followed(followed) {
-
         return followed.filter(item => item.isFollowed)
     }
 
@@ -41,6 +55,15 @@ class Dashboard extends Component {
 
         return devices.filter(item => item.name.toLowerCase().indexOf(query) !== -1)
 
+    }
+
+    changeCenter(e, center){
+
+        e.preventDefault()
+
+        this.setState({
+            center
+        })
     }
 
     clear() {
@@ -51,13 +74,15 @@ class Dashboard extends Component {
 
     render() {
 
-        const { query } = this.state
+        const { query, center } = this.state
 
         const { devices, alert, handleToggleFollow, handleAlertHide } = this.props
 
 
         const followed = this.followed(devices)
         const filtered = this.filter(devices, query)
+
+        const viewport = getViewportSize()
 
         return (
 
@@ -69,14 +94,14 @@ class Dashboard extends Component {
 
                     <div className="grid">
 
-                        <div className="unit two-thirds">
+                        <div className="unit half">
 
                             <div className="grid">
 
-                                <div className="unit half">
+                                <div className="unit two-thirds">
                                     <h1 className="mb0">Device Dashboard</h1>
                                 </div>
-                                <div className="unit half text-right">
+                                <div className="unit one-third text-right">
                                     <Link to="/register" className="btn">
                                         <i className="material-icons">&#xE145;</i>
                                         Add New Device
@@ -86,34 +111,32 @@ class Dashboard extends Component {
                             </div>
 
                             <p>
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut molestiae consequatur adipisci tenetur, quidem deserunt porro nemo, aperiam asperiores animi architecto, quod deleniti modi maxime aliquam corporis repellendus. Blanditiis, rem.
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                             </p>
 
                             {alert.isVisible && <Alert alert={alert} alertHide={handleAlertHide} alertSnooze={handleAlertHide} />}
 
-                            <div>
+                            <div className="mb30">
 
                                 <input value={query} onChange={this.onChange} className="form-field" placeholder="Search..." />
                                 {query.length > 0 && <a onClick={this.clear}>clear</a>}
 
                             </div>
 
-                            <hr/>
+                            
 
                             <h2>Followed</h2>
                             {followed.length > 0 &&
-                                <DevicesTable devices={followed} toggleFollow={handleToggleFollow} />
+                                <DevicesTable devices={followed} toggleFollow={handleToggleFollow} changeCenter={this.changeCenter} />
                             }
 
                             {!followed.length &&
                                 <Empty />
                             }
 
-                            <hr/>
-
 
                             <h2>All</h2>
-                            <DevicesTable devices={filtered} toggleFollow={handleToggleFollow} />
+                            <DevicesTable devices={filtered} toggleFollow={handleToggleFollow} changeCenter={this.changeCenter} />
 
                             {!filtered.length &&
                                 <Empty />
@@ -121,9 +144,11 @@ class Dashboard extends Component {
 
                         </div>
 
-                        <div className="unit one-third">
+                        <div className="unit half">
 
-                            <MapsMany center={{ lat: 52.152029, lng: -0.863800 }}  />
+                            <div className="map">
+                                <MapsMany markers={filtered} center={center} viewport={viewport}  />
+                            </div>
 
                         </div>
                     </div>
@@ -157,14 +182,14 @@ function mapDispatchToProps(dispatch) {
         handleToggleFollow(e, id) {
 
             e.preventDefault()
-            console.log('handle toggle follow')
+            // console.log('handle toggle follow')
             dispatch(toggleFollow(id))
 
         },
         handleAlertHide(e) {
 
             e.preventDefault()
-            console.log('handle alert hide')
+            // console.log('handle alert hide')
             dispatch(alertHide())
 
         }

@@ -5,10 +5,13 @@ import { connect } from 'react-redux'
 import HeaderAuthenticated from '../Header/HeaderAuthenticated'
 
 import MessagesJourney from '../Messages/MessagesJourney'
+import Temperature from '../Temperature/Temperature'
 
 import MapsSingle from '../Maps/MapsSingle'
 
 import { toggleFollow, changeName } from '../../Actions/devicesActions'
+
+import { getViewportSize } from '../../Utils/screen'
 
 class Device extends Component {
 
@@ -25,9 +28,7 @@ class Device extends Component {
         this.resetPosition = this.resetPosition.bind(this)
     }
 
-    componentDidMount(){
-
-        console.log('componentDidMount')
+    componentDidMount() {
 
         const { id } = this.props.match.params
         const { devices } = this.props
@@ -39,7 +40,7 @@ class Device extends Component {
 
     }
 
-    setPosition(e, location){
+    setPosition(e, location) {
 
         e.preventDefault()
 
@@ -47,10 +48,8 @@ class Device extends Component {
             mapPosition: location
         })
     }
-    
-    resetPosition(e, location){
 
-        console.log('reset', location)
+    resetPosition(e, location) {
 
         e.preventDefault()
 
@@ -77,12 +76,14 @@ class Device extends Component {
 
     render() {
 
-        const { editing, mapPosition  } = this.state
+        const { editing, mapPosition } = this.state
 
         const { devices, handleToggleFollow, handleChangeName } = this.props
 
         const { id } = this.props.match.params
         const device = this.filter(devices, parseInt(id, 0))
+
+        const viewport = getViewportSize()
 
         return (
 
@@ -99,7 +100,7 @@ class Device extends Component {
 
                             <div className="grid">
 
-                                <div className="unit two-thirds">
+                                <div className="unit half">
 
                                     <p>
                                         <Link to="/dashboard">
@@ -124,6 +125,8 @@ class Device extends Component {
                                             {device.status}
                                         </div>
                                     </h1>
+
+                                    <hr/>
 
 
 
@@ -151,7 +154,7 @@ class Device extends Component {
                                                 <div className="unit half">01/11/2017 12:00:00</div>
                                             </div>
 
-                                            <div className="grid mb10">
+                                            <div className="grid ">
                                                 <div className="unit half"><label>Installation address</label></div>
                                                 <div className="unit half">
                                                     12 Address line 1,<br />
@@ -159,6 +162,8 @@ class Device extends Component {
                                                     United Kingdom
                                                 </div>
                                             </div>
+
+                                            <hr/>
 
                                             <div className="grid mb10">
                                                 <div className="unit half">
@@ -214,7 +219,8 @@ class Device extends Component {
 
                                         <div className="unit half">
 
-                                            <MessagesJourney messages={device.log} setPosition={this.setPosition} />
+                                            {device.type === 'GPS' && <MessagesJourney messages={device.log} setPosition={this.setPosition}  />}
+                                            {device.type === 'Temperature' && <Temperature device={device} />}
 
                                         </div>
                                     </div>
@@ -235,25 +241,30 @@ class Device extends Component {
 
                                         </a>
 
-                                        <a className="btn">Request maintenance</a>
+                                        <a className="btn">
+                                            <i className="material-icons">&#xE7F4;</i>
+                                            Request maintenance
+                                        </a>
 
                                     </div>
 
                                 </div>
 
 
-                                <div className="unit one-third">
+                                <div className="unit one-half">
 
                                     {mapPosition &&
-                                        <MapsSingle center={mapPosition} />
+                                        <div className="map">
+                                            <MapsSingle center={mapPosition} viewport={viewport} device={device} />
+                                        </div>
                                     }
 
 
-                                    <div>
+                                    {/* <div>
 
                                         <a onClick={(e)=>this.resetPosition(e, device.location)}>Reset map</a>
 
-                                    </div>
+                                    </div> */}
 
                                 </div>
 

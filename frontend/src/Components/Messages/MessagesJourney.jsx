@@ -30,8 +30,6 @@ class MessagesJourney extends Component {
                     </tbody>
                 </table>
 
-                <hr/>
-
                 <a>View History</a>
 
 

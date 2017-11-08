@@ -2,42 +2,59 @@
 const initialState = [{
     id: 1,
     name: 'Device 1',
-    serialNumber: 'AAAA-BBBB-CCCC-DDDD',
+    serialNumber: 'AAAA',
     isFollowed: false,
     type: 'GPS',
     log: [{
         text: 'Latest text',
         date: new Date(2017, 10, 7, 12, 0, 0, 0),
         address: 'Address name 123',
-        location: { lat: 52.152029, lng: -0.863800 } 
+        location: { lat: 51.515578, lng: -0.083757 } 
 
     }, {
         text: 'Latest text',
         date: new Date(2017, 10, 6, 12, 0, 0, 0),
         address: 'Address name 123',
-        location: { lat: 53.569676, lng: 1.788025 }    
+        location: { lat: 52.152029, lng: -0.863800 }   
 
     
     }],
     status: 'Stationary',
-    location: { lat: -34.397, lng: 150.644 },
-    installationDate: new Date(2017, 10, 7, 12, 0, 0, 0)
+    location: { lat: 51.515578, lng: -0.083757 },
+    installationDate: new Date(2017, 10, 7, 12, 0, 0, 0),
+    groups: ['Group 1', 'Group 2']
 },{
     id: 2,
     name: 'Device 2',
-    serialNumber: 'AAAA-BBBB-CCCC-DDDD',
+    serialNumber: 'BBBB',
     isFollowed: false,
     type: 'Temperature',
     log: [{
-        text: 'Latest text'
+        text: 'Latest text',
+        date: new Date(2017, 10, 7, 12, 0, 0, 0)
     }],
-    status: 'OK',
-    temperature: 0
+    status: 'Temperature rising',
+    temperature: 9,
+    location: { lat: 51.717874, lng: -1.225650 },
+    installationDate: new Date(2017, 10, 7, 12, 0, 0, 0),
+    groups: ['Group 3']
 }]
 
 function devicesReducer(state = initialState, action) {
 
     switch (action.type) {
+
+        case 'ADD_DEVICE': {
+
+            const { device } = action.payload
+            const newArray = state.slice()
+
+            device.id = state.length + 1
+            newArray.push(device)
+
+            return newArray
+
+        }
 
         case 'TOGGLE_FOLLOW': {
 

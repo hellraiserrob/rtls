@@ -25,7 +25,14 @@ class HeaderAuthenticated extends Component {
                             <nav>
                                 <ul>
                                     <li>
-                                        <Link to="/login">Logout</Link>
+                                        <Link to="/account" className="btn">
+                                            Account
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/login" className="btn">
+                                            Logout
+                                        </Link>
                                     </li>
                                 </ul>
                             </nav>

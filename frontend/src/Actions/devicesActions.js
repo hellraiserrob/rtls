@@ -11,3 +11,10 @@ export function changeName(id, name){
         payload: { id, name }
     }
 }
+
+export function addDevice(device){
+    return {
+        type: 'ADD_DEVICE',
+        payload: { device }
+    }
+}

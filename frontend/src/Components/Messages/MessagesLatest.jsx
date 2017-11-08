@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { formatDate } from '../../Utils/dates'
+
 class MessagesLatest extends Component {
 
     render() {
@@ -9,7 +11,7 @@ class MessagesLatest extends Component {
         return (
 
             <div>
-                {message.text}
+                {formatDate(message.date)}
             </div>
 
         );

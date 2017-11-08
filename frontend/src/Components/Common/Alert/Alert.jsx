@@ -15,8 +15,13 @@ class Alert extends Component {
                 <strong className="text-uppercase">Alert</strong> {alert.text}
 
                 <ul>
-                    <li><a onClick={alertHide}>dismiss</a></li>
-                    <li><a onClick={alertSnooze}>snooze</a></li>
+                    <li>
+                        <a onClick={alertSnooze} title="Snooze alert">
+                            <i className="material-icons">&#xE7F8;</i>
+                            
+                        </a>
+                    </li>
+                    <li><a onClick={alertHide}><i className="material-icons"  title="Close alert">&#xE5CD;</i></a></li>
                 </ul>
 
                 
