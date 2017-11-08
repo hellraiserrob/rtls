@@ -21,7 +21,14 @@ class MapsSingle extends Component {
 
     render() {
 
-        const { center, viewport, device } = this.props
+        const { center, device } = this.props
+        
+        let { viewport } = this.props
+
+        if (viewport.width <= 568) {
+            viewport.height = 400
+        }
+
 
         let icon = '/images/marker.png'
 

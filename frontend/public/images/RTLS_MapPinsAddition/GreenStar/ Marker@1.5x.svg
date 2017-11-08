@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="49" height="70" viewBox="0 0 49 70">
+  <defs>
+    <path id="-marker@1.5x-a" d="M41.1429062,20.5714531 C41.1429062,23.0223489 40.8616559,25.5536019 39.8170118,27.763426 L25.1919943,58.8616773 C24.3482433,60.6295366 22.5000268,61.7143593 20.5714531,61.7143593 C18.6428794,61.7143593 16.7946629,60.6295366 15.9910905,58.8616773 L1.32589444,27.763426 C0.281250335,25.5536019 0,23.0223489 0,20.5714531 C0,9.20090383 9.20090383,0 20.5714531,0 C31.9420024,0 41.1429062,9.20090383 41.1429062,20.5714531 Z"/>
+    <filter id="-marker@1.5x-b" width="134%" height="122.7%" x="-17%" y="-8.1%" filterUnits="objectBoundingBox">
+      <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0"/>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(4 2)">
+    <mask id="-marker@1.5x-c" fill="#fff">
+      <use xlink:href="#-marker@1.5x-a"/>
+    </mask>
+    <use fill="#000" filter="url(#-marker@1.5x-b)" xlink:href="#-marker@1.5x-a"/>
+    <use fill="#417505" xlink:href="#-marker@1.5x-a"/>
+    <g fill="#417505" mask="url(#-marker@1.5x-c)">
+      <rect width="42" height="62"/>
+    </g>
+    <g fill="#FFF" mask="url(#-marker@1.5x-c)">
+      <polygon points="11.016 16.329 5.276 19.8 6.811 13.281 1.76 8.897 8.413 8.319 11.016 2.2 13.619 8.319 20.272 8.897 15.244 13.281 16.757 19.8" transform="translate(10 9)"/>
+    </g>
+    <path stroke="#FFF" stroke-width="2" d="M40.1429062,20.5714531 C40.1429062,9.75318858 31.3897176,1 20.5714531,1 C9.75318858,1 1,9.75318858 1,20.5714531 C1,23.3022456 1.36393597,25.5040583 2.23036856,27.3368975 L16.901457,58.4478744 C17.5241184,59.8177294 18.9880038,60.7143593 20.5714531,60.7143593 C22.1536845,60.7143593 23.6280173,59.8169394 24.2870697,58.4361055 L38.9129395,27.3360463 C39.7789702,25.5040583 40.1429062,23.3022456 40.1429062,20.5714531 Z" mask="url(#-marker@1.5x-c)"/>
+  </g>
+</svg>

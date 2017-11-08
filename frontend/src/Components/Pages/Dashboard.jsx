@@ -33,7 +33,7 @@ class Dashboard extends Component {
         this.changeCenter = this.changeCenter.bind(this)
     }
 
-    componentDidMount(){
+    componentDidMount() {
 
         const { devices } = this.props
 
@@ -57,7 +57,7 @@ class Dashboard extends Component {
 
     }
 
-    changeCenter(e, center){
+    changeCenter(e, center) {
 
         e.preventDefault()
 
@@ -92,9 +92,9 @@ class Dashboard extends Component {
 
                 <div className="wrap wider">
 
-                    <div className="grid">
+                    <div className="grid xs-grid-flex">
 
-                        <div className="unit half">
+                        <div className="unit half xs-order-2">
 
                             <div className="grid">
 
@@ -118,14 +118,25 @@ class Dashboard extends Component {
 
                             <div className="mb30">
 
-                                <input value={query} onChange={this.onChange} className="form-field" placeholder="Search..." />
-                                {query.length > 0 && <a onClick={this.clear}>clear</a>}
+                                <div className="grid">
+                                    <div className="unit three-quarters xs-mb5">
+                                        <input value={query} onChange={this.onChange} className="form-field" placeholder="Search..." />
+                                        {query.length > 0 && <a onClick={this.clear}>clear</a>}
+                                    </div>
+                                    <div className="unit one-quarter">
+                                        <a href="" className="btn btn-block">
+                                            <i className="material-icons">&#xE8B8;</i>
+                                            Filters
+                                        </a>
+                                    </div>
+                                </div>
+
 
                             </div>
 
-                            
 
-                            <h2>Followed</h2>
+
+                            <h2>Watchlist</h2>
                             {followed.length > 0 &&
                                 <DevicesTable devices={followed} toggleFollow={handleToggleFollow} changeCenter={this.changeCenter} />
                             }
@@ -144,10 +155,10 @@ class Dashboard extends Component {
 
                         </div>
 
-                        <div className="unit half">
+                        <div className="unit half  xs-order-1">
 
                             <div className="map">
-                                <MapsMany markers={filtered} center={center} viewport={viewport}  />
+                                <MapsMany markers={filtered} center={center} viewport={viewport} />
                             </div>
 
                         </div>

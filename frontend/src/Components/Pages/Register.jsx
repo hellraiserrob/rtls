@@ -102,8 +102,8 @@ class Register extends Component {
                             </p>
 
 
-                            <div className="grid">
-                                <div className="unit half">
+                            <div className="grid xs-grid-flex">
+                                <div className="unit half xs-order-2">
 
                                     <form onSubmit={this.save}>
 
@@ -154,10 +154,10 @@ class Register extends Component {
 
                                 </div>
 
-                                <div className="unit one-quarter">
+                                <div className="unit one-quarter hide-on-mobiles">
 
                                 </div>
-                                <div className="unit one-quarter">
+                                <div className="unit one-quarter xs-order-1">
                                     <div className="image"></div>
                                 </div>
                             </div>

@@ -17,10 +17,16 @@ class HeaderAuthenticated extends Component {
 
                         <div className="unit one-third">
                             <h2 className="mb0">Brand</h2>
+
+                            <a className="only-on-mobiles mobile-nav">
+                                <i className="material-icons">&#xE5D2;</i>
+                            </a>
                         </div>
 
 
-                        <div className="unit two-thirds">
+
+
+                        <div className="unit two-thirds hide-on-mobiles">
 
                             <nav>
                                 <ul>

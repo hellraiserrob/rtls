@@ -7,7 +7,7 @@ import InfoBox from 'react-google-maps/lib/components/addons/InfoBox'
 const MyMapComponent = withScriptjs(withGoogleMap((props) =>
     <GoogleMap
         defaultOptions={{ disableDefaultUI: true, draggable: false, scrollwheel: false }}
-        defaultZoom={8}
+        defaultZoom={7}
         defaultCenter={props.center}
         center={props.center}
         markers={props.markers}
@@ -54,7 +54,14 @@ class MapsMany extends Component {
 
     render() {
 
-        const { center, markers, viewport } = this.props
+        const { center, markers } = this.props
+        let { viewport } = this.props
+
+        if(viewport.width <= 568 ){
+            viewport.height = 400
+        }
+            
+        
 
         return (
 

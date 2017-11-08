@@ -16,14 +16,6 @@ html {
   }
 
 
-::-webkit-scrollbar {
-    width: 0.5em;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #333;
-}
-
 
 a {
     text-decoration: none;

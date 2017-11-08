@@ -4,7 +4,7 @@ import { formatDate } from '../../Utils/dates'
 
 class MessagesJourney extends Component {
 
-    
+
     render() {
 
         const { messages, setPosition } = this.props
@@ -15,20 +15,31 @@ class MessagesJourney extends Component {
 
                 <h2>Position log</h2>
 
-                <table>
-                    <tbody>
-                        {messages.map((item, index) => <tr key={index}>
-                            <td>{formatDate(item.date)}</td>
-                            <td>{item.address}</td>
-                            <td>
-                                <a onClick={(e) => setPosition(e, item.location)}>
-                                    <i className="material-icons">&#xE55F;</i>
-                                </a>
-                            </td>
-                        </tr>)}
+                <div className="table-wrapper">
 
-                    </tbody>
-                </table>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Address</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {messages.map((item, index) => <tr key={index}>
+                                <td>{formatDate(item.date)}</td>
+                                <td>{item.address}</td>
+                                <td>
+                                    <a onClick={(e) => setPosition(e, item.location)}>
+                                        <i className="material-icons">&#xE55F;</i>
+                                    </a>
+                                </td>
+                            </tr>)}
+
+                        </tbody>
+                    </table>
+
+                </div>
 
                 <a>View History</a>
 

@@ -1,12 +1,31 @@
 header {
     background: #246ab6;
     margin: 0 0 50px 0;
-    padding: 8px 40px;
+    padding: 8px 0;
+
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index: 1;
 }
 
 header h1, header h2, header h3 {
     color: #fff;
 }
+
+header .mobile-nav i{
+    font-size: 35px;
+}
+header .mobile-nav {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: block;
+    color: #fff;
+    
+}
+
 
 header ul {
     list-style: none;
